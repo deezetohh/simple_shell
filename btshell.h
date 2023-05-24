@@ -12,11 +12,8 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <string.h>
-#include <stdbool.h>
 
 /*Fucntion Declarations*/
-bool is_delimiter(char c);
-int nbcount(const char *line);
-void parse(const char *line, int nbtok, char *argv[], int comnum);
+
 
 #endif

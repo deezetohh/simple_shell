@@ -29,8 +29,13 @@ int main(int argc, char *argv[])
             LINE[line_l - 1] = '\0';  /*Remove the newline character at the end*/
 
             /*Tokenize the command line into arguments*/
-            args[0] = LINE;
-            args[1] = NULL;
+             char* token = strtok(LINE, " "); // Split the command line by spaces
+            int argIndex = 0;
+            while (token != NULL) {
+                args[argIndex++] = token;
+                token = strtok(NULL, " ");
+            }
+            args[argIndex] = NULL;
 
             /*Fork a new process to execute the command*/
             pid = fork();
