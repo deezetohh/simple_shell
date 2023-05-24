@@ -6,8 +6,6 @@
  *
  * Return: Always 0 (success)
  */
-
-
 int main(int argc, char *argv[]) {
     size_t BUFF = 0;
     char *LINE = NULL;
@@ -22,13 +20,13 @@ int main(int argc, char *argv[]) {
     shinteract = isatty(STDIN_FILENO);
     if (shinteract == 0 && argc == 1) {
         ssize_t line_l;
+        char *args[2];  
         while ((line_l = getline(&LINE, &BUFF, stdin)) != -1) {
             write(STDOUT_FILENO, "Command: ", 9);
             write(STDOUT_FILENO, LINE, line_l);
             LINE[line_l - 1] = '\0';  /*Remove the newline character at the end*/
 
             /*Tokenize the command line into arguments*/
-            char *args[2];
             args[0] = LINE;
             args[1] = NULL;
 
@@ -38,9 +36,9 @@ int main(int argc, char *argv[]) {
                 perror("fork");
                 exit(EXIT_FAILURE);
             } else if (pid == 0) {
-                    /*Child process*/
+                /*Child process*/
                 execve(args[0], args, NULL);
-                 /*If the command execution failed, print an error message*/
+                /*If the command execution failed, print an error message*/
                 perror("execve");
                 exit(EXIT_FAILURE);
             } else {
@@ -54,7 +52,7 @@ int main(int argc, char *argv[]) {
     }
 
     while (shinteract) {
-        write(STDOUT_FILENO, "btshell$", 9);
+        write(STDOUT_FILENO, "btshell$ ", 10);
         A = getline(&LINE, &BUFF, stdin);
         if (A < 0) {
             free(LINE);
@@ -66,7 +64,7 @@ int main(int argc, char *argv[]) {
         LINE[A - 1] = '\0';  /*Remove the newline character at the end*/
 
         /*Tokenize the command line into arguments*/
-        char *args[2];
+        char *args[2]; 
         args[0] = LINE;
         args[1] = NULL;
 
@@ -89,7 +87,7 @@ int main(int argc, char *argv[]) {
 
         comnum++;
         LINE = NULL;
-}
+    }
 
-return (0);
+    return 0;
 }
