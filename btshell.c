@@ -6,12 +6,15 @@
  *
  * Return: Always 0 (success)
  */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) 
+{
     size_t BUFF = 0;
     char *LINE = NULL;
     int A;
     int comnum = 1;
     int shinteract;
+    pid_t pid;
+    char *args[2];
 
     /* Use signal function that will ignore the signal specified by the first argument */
     signal(SIGINT, SIG_IGN);
@@ -20,7 +23,6 @@ int main(int argc, char *argv[]) {
     shinteract = isatty(STDIN_FILENO);
     if (shinteract == 0 && argc == 1) {
         ssize_t line_l;
-        char *args[2];  
         while ((line_l = getline(&LINE, &BUFF, stdin)) != -1) {
             write(STDOUT_FILENO, "Command: ", 9);
             write(STDOUT_FILENO, LINE, line_l);
@@ -31,7 +33,7 @@ int main(int argc, char *argv[]) {
             args[1] = NULL;
 
             /*Fork a new process to execute the command*/
-            pid_t pid = fork();
+            pid = fork();
             if (pid < 0) {
                 perror("fork");
                 exit(EXIT_FAILURE);
@@ -52,7 +54,7 @@ int main(int argc, char *argv[]) {
     }
 
     while (shinteract) {
-        write(STDOUT_FILENO, "btshell$ ", 10);
+        write(STDOUT_FILENO, "btshell $", 11);
         A = getline(&LINE, &BUFF, stdin);
         if (A < 0) {
             free(LINE);
@@ -64,12 +66,11 @@ int main(int argc, char *argv[]) {
         LINE[A - 1] = '\0';  /*Remove the newline character at the end*/
 
         /*Tokenize the command line into arguments*/
-        char *args[2]; 
         args[0] = LINE;
         args[1] = NULL;
 
         /*Fork a new process to execute the command*/
-        pid_t pid = fork();
+        pid = fork();
         if (pid < 0) {
             perror("fork");
             exit(EXIT_FAILURE);
