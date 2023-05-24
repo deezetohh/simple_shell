@@ -89,7 +89,7 @@ int main(int argc, char *argv[]) {
 
         comnum++;
         LINE = NULL;
-    }
+}
 
-    return 0;
+return (0);
 }

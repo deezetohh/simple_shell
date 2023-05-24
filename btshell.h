@@ -1,4 +1,4 @@
-#ifndef _BTSHELL_H 
+#ifndef _BTSHELL_H
 #define _BTSHELL_H
 
 /*Header files for btshell*/
@@ -18,4 +18,5 @@
 bool is_delimiter(char c);
 int nbcount(const char *line);
 void parse(const char *line, int nbtok, char *argv[], int comnum);
+
 #endif
