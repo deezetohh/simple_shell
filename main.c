@@ -1,45 +1,42 @@
-#include "btshell.h"
-/** 
-* main - btshell entry point
-* return: 0 when successful
-*/
- bool is_delimiter(char c); 
- return (c == ' ' || c == '\t' || c == '\n');
+#include 'btshell.h'
 
-int main(char *argv[], int argc)
+bool is_delimiter(char c)
 {
-    size_t BUFF;
-    BUFF = 0;
+    return (c == ' ' || c == '\t' || c == '\n');
+}
+
+int main(int argc, char *argv[])
+{
+    size_t BUFF = 0;
     char *LINE = NULL;
     int A;
     int nbtok = 0;
     int comnum = 1;
-    int shinteract; 
+    int shinteract;
 
-/*Use signal function that will ignore the signal specified by the first argument*/
-    int signal(SIGINT, SIG_IGN);
-
-/* We now need to check if the shell is in interactive or non-interactive mode*/
-    shinteract = isatty(STDIN_FILENO);
-    if (shinteract == 0 && argc == 1)
+    int ret = signal(SIGINT, SIG_IGN);
+    if (ret == SIG_ERR)
     {
-        char* LINE = NULL;
-        size_t BUFF = 0;
+        perror("Failed to set signal handler");
+        exit(1);
+    }
+
+    shinteract = isatty(STDIN_FILENO);
+    if (shinteract == 0 && !isatty(STDIN_FILENO))
+    {
         ssize_t line_l;
         while ((line_l = getline(&LINE, &BUFF, stdin)) != -1)
         {
-           int nbtok = nbcount(LINE) ;
-           parse(LINE, nbtok, argv, comnum);
+            int nbtok = nbcount(LINE);
+            parse(LINE, nbtok, argv, comnum);
         }
         free(LINE);
-        return (0);
+        return 0;
     }
- char c;
-
 
     while (shinteract)
     {
-        write (1, "btshell$", 10);
+        write(1, "btshell$", 9);
         nbtok = 0;
         A = getline(&LINE, &BUFF, stdin);
         if (A < 0)
@@ -65,6 +62,49 @@ int main(char *argv[], int argc)
         comnum++;
         LINE = NULL;
     }
-return 0;
-    
+    return 0;
+}
+
+int nbcount(const char *line)
+{
+    int count = 0;
+    int length = strlen(line);
+    bool in_token = false;
+
+    for (int i = 0; i < length; i++)
+    {
+        if (line[i] == ' ' || line[i] == '\t' || line[i] == '\n')
+        {
+            in_token = false;
+        }
+        else if (!in_token)
+        {
+            count++;
+            in_token = true;
+        }
+    }
+
+    return count;
+}
+
+void parse(const char *line, int nbtok, char *argv[], int comnum)
+{
+    printf("Command: %s\n", line);
+    printf("Number of Tokens: %d\n", nbtok);
+    printf("Command Number: %d\n", comnum);
+
+    int arg_index = 0;
+    char *token = strtok((char *)line, " \t\n");
+    while (token != NULL)
+    {
+        argv[arg_index] = token;
+        arg_index++;
+        token = strtok(NULL, " \t\n");
+    }
+
+    printf("Tokens:\n");
+    for (int i = 0; i < arg_index; i++)
+    {
+        printf("%d: %s\n", i + 1, argv[i]);
+    }
 }
