@@ -1,9 +1,12 @@
 #include "btshell.h"
 /**
-* main - entyr point of btshell
-* @argc - count arguments
-* @argv -
-*/
+ * main - entry point of the btshell program
+ * @argc: the number of command-line arguments
+ * @argv: an array of strings containing the command-line arguments
+ *
+ * Return: Always 0 (success)
+ */
+
 
 int main(int argc, char *argv[]) {
     size_t BUFF = 0;
