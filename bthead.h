@@ -13,6 +13,9 @@
 #include <string.h>
 #include <sys/wait.h>
 
+/* bt_process*/
+#include <sys/types.h>
+
  /*bt_do*/
  #include <strings.h>
  
@@ -22,9 +25,12 @@ typedef struct btBUILDt
     int (*bt_BUILDf)(char **arguments, char *btshell)
 } btBUILDt;
 
+
 /* Function Declarations*/3
-int bt_process(char **arguments, char *)
+int bt_process(char **arguments, char *);
+int bt_lstring(char *string)
 void bt_run(char *);
 int bt_do (char **arguments, char *);
 char *bt_read(void);
 char **bt_split(char *command_line);
+int bt_comparestr(const char *string1, const char *string2);
