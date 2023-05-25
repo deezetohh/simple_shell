@@ -13,11 +13,17 @@
 #include <string.h>
 #include <sys/wait.h>
 
-
-
+ /*bt_do*/
+ #include <strings.h>
+ 
+typedef struct btBUILDt
+{
+    const char *bt_BUILDstr;
+    int (*bt_BUILDf)(char **arguments, char *btshell)
+} btBUILDt;
 
 /* Function Declarations*/
 void bt_run(char *);
-int bt_do (char **arguments, char *)
-char *bt_read(void)
-char **bt_split(char *command_line)
+int bt_do (char **arguments, char *);
+char *bt_read(void);
+char **bt_split(char *command_line);
