@@ -28,7 +28,7 @@ typedef struct btBUILDt
 
 /* Function Declarations*/3
 int bt_process(char **arguments, char *);
-int bt_lstring(char *string);
+int bt_lstring(const char *string);
 void bt_run(char *);
 int bt_do (char **arguments, char *);
 char *bt_read(void);
@@ -36,5 +36,7 @@ char **bt_split(char *command_line);
 int bt_comparestr(const char *string1, const char *string2);
 
 /*Built-ins*/
-int btCD(char **arguments, char *)
+int btCD(char **arguments, char *);
+int btEXIT(char **arguments, char *)
+
 #endif
