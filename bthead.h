@@ -34,6 +34,7 @@ int bt_do (char **arguments, char *);
 char *bt_read(void);
 char **bt_split(char *command_line);
 int bt_comparestr(const char *string1, const char *string2);
+int bt_atoi(char *x)
 
 /*Built-ins*/
 int btCD(char **arguments, char *);
