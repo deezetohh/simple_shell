@@ -31,5 +31,5 @@ while (bt_BUILDcom[B].bt_BUILDstr != NULL)
     }
     B++
 }
-return(bt_start(arguments, btshell))
+return(bt_process(arguments, btshell))
 }

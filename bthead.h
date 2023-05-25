@@ -22,7 +22,8 @@ typedef struct btBUILDt
     int (*bt_BUILDf)(char **arguments, char *btshell)
 } btBUILDt;
 
-/* Function Declarations*/
+/* Function Declarations*/3
+int bt_process(char **arguments, char *)
 void bt_run(char *);
 int bt_do (char **arguments, char *);
 char *bt_read(void);
