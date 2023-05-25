@@ -9,11 +9,15 @@
 #include <unistd.h>
 #include <signal.h>
 
-
+/*bt_run.c*/
+#include <string.h>
+#include <sys/wait.h>
 
 
 
 
 /* Function Declarations*/
-/* btshell.c*/
 void bt_run(char *);
+int bt_do (char **arguments, char *)
+char *bt_read(void)
+char **bt_split(char *command_line)
