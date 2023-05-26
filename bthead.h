@@ -38,7 +38,12 @@ int bt_atoi(char *r);
 
 /*Built-ins*/
 int btCD(char **arguments, char *);
+int btENV(char **arguments, char *);
 int btEXIT(char **arguments, char *);
 int btHELP(char **arguments, char *);
 int btLS(char **arguments, char *);
-#endif
+
+ /* for environment*/
+ extern char **__environ;
+
+#endif /* bthead.h*/
