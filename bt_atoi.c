@@ -6,7 +6,7 @@
  * 
 */
 
-int bt_atoi(char *x)
+int bt_atoi(char *r)
 {
  int signMultiply = 1;
  int j = 0;
