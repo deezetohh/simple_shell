@@ -46,6 +46,6 @@ int bt_process(char **arguments, char *btshell)
     }
     else
     {
-        return(-1)
+        return(-1);
     }
 }

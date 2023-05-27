@@ -5,9 +5,7 @@
 */
 int btHelp(char **args __attribute__((unused)), char *K __attribute__((unused)))
 {
-    int i;
-    i = 0; 
-     const char *message[] = {
+    const char *message[] = {
         "Welcome to the btshell!\n",
         "Available commands:\n",
         "1. cd: Change directory\n",
@@ -19,17 +17,18 @@ int btHelp(char **args __attribute__((unused)), char *K __attribute__((unused)))
     };
 
     size_t lenmsg[] = {
-        sizeof("Welcome to the btshell!\n"),
-        sizeof("Available commands:\n"),
-        sizeof("1. cd: Change directory\n"),
-        sizeof("2. help: Display available commands\n"),
-        sizeof("3. exit: Exit the shell\n"),
-        sizeof("4. env: Display environment variables\n"),
-        sizeof("5. ls: List files and directories\n"),
-        sizeof("Thank you!\n")
+        sizeof("Welcome to the btshell!\n") - 1,
+        sizeof("Available commands:\n") - 1,
+        sizeof("1. cd: Change directory\n") - 1,
+        sizeof("2. help: Display available commands\n") - 1,
+        sizeof("3. exit: Exit the shell\n") - 1,
+        sizeof("4. env: Display environment variables\n") - 1,
+        sizeof("5. ls: List files and directories\n") - 1,
+        sizeof("Thank you!\n") - 1
     };
 
-    for (i = 0; i < (sizeof(message) / sizeof(message[0])); i++)
+    long unsigned int i;
+    for (i = 0; i < (int)(sizeof(message) / sizeof(message[0])); i++)
     {
         write(STDOUT_FILENO, message[i], lenmsg[i]);
     }

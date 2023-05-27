@@ -9,12 +9,14 @@ int btLS(char **arguments, char *btshell)
 {
     int Q;
     int argC = 0;
+    char **narg;
+    int outcome;
 
     while (arguments[argC] != NULL)
     {
         argC++;
     }
-    char **narg = malloc((argC + 2) * sizeof(char *));
+   narg = malloc((argC + 2) * sizeof(char *));
     if (narg == NULL)
     {
         return(1);
@@ -25,7 +27,7 @@ int btLS(char **arguments, char *btshell)
         narg[Q + 1] = arguments[Q];
     }
     narg[argC + 1] = NULL;
-    int outcome;
+    
     outcome = bt_process(narg, btshell);
 
 free(narg);

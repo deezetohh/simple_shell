@@ -3,12 +3,12 @@
  * bt_read: reads input
  * return: command line
 */
-
-char bt_read(void)
+char *bt_read(void)
 {
     size_t SBUFFER = 0;
-    ssize_t get_line = getline(&command_line, &SBUFFER, stdin);
     char *command_line = NULL;
+    ssize_t get_line;
+    get_line = getline(&command_line, &SBUFFER, stdin);
 
     if (get_line == -1)
     {
@@ -18,5 +18,11 @@ char bt_read(void)
         }
         exit(0);
     }
-    return(command_line)
+    return (command_line);
 }
+
+
+
+
+
+
