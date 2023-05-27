@@ -12,24 +12,26 @@ int bt_atoi(char *r)
  int j = 0;
  unsigned int number = 0;  
 
- while (x[j] == ' ')
+ while (r[j] == ' ')
  j++;
 
- if (x[j] == '-')
+ if (r[j] == '-')
  {
-    signMultiply = -1
-    j++
+    signMultiply = -1;
+    j++;
  }
- for (; x[j] != '\0'; j++)
+ for (; r[j] != '\0'; j++)
  {
-    if (x[j] >= '0' && x[j] <= '9')
+    if (r[j] >= '0' && r[j] <= '9')
     {
-        number = (number * 10) + (x[j] - '0');
+        number = (number * 10) + (r[j] - '0');
     }
     else 
     {
         if (number > 0)
         break;
-    }
+    } 
  }
  return(number * signMultiply);
+}
+

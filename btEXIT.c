@@ -7,7 +7,8 @@
 int btEXIT(char **C, char *D __attribute__((unused)))
 {
     int eSTATUS = -1;
-    for (int E = 1, C[E] != NULL; E++)
+    int E;
+    for (E = 1; C[E] != NULL; E++)
     {
         eSTATUS = bt_atoi(C[E]);
         break;

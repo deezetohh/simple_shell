@@ -6,8 +6,9 @@
  * return: 1 = continue and 0 = stop
 */
 
-int bt_do(char **arguments, char btshell)
+int bt_do(char **arguments,char *btshell __attribute__((unused)))
 {
+    int B = 0;
     btBUILDt bt_BUILDcom[] = {
         {NULL, NULL},
         {"cd", btCD},
@@ -22,14 +23,13 @@ int bt_do(char **arguments, char btshell)
     {
         return(1);
     }
-int B = 0;
 while (bt_BUILDcom[B].bt_BUILDstr != NULL)
 {
     if (bt_comparestr(arguments[0],bt_BUILDcom[B].bt_BUILDstr) == 0)
     {
         return(bt_BUILDcom[B].bt_BUILDf(arguments, btshell));
     }
-    B++
+    B++;
 }
-return(bt_process(arguments, btshell))
+return(0);
 }
