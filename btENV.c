@@ -5,7 +5,7 @@
 */
 extern char **environ;
 
-int hsh_env(char **a __attribute__((unused)), char *p __attribute__((unused)))
+int btENV(char **a __attribute__((unused)), char *p __attribute__((unused)))
 {
     int T = 0;
     size_t tlen;

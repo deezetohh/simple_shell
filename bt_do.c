@@ -10,7 +10,7 @@ int bt_do(char **arguments,char *btshell __attribute__((unused)))
 {
     int B = 0;
     btBUILDt bt_BUILDcom[] = {
-        {NULL, NULL},
+        {NULL, ((void*)0)},
         {"cd", btCD},
         {"exit", btEXIT},
         {"env", btENV},
