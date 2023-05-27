@@ -21,7 +21,7 @@ int hsh_env(char **a __attribute__((unused)), char *p __attribute__((unused)))
         return(-1);
     }
     char *ptr = buffer;
-    for (T = 0, environ[T] != NULL, T++)
+    for (T = 0;  environ[T] != NULL; T++)
     {
         char *src = environ[T]; 
         while (*src !='\0')
